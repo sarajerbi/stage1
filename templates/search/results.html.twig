@@ -1,0 +1,27 @@
+{# templates/search/results.html.twig #}
+
+{# Center the form and give it a larger input field #}
+<div style="text-align: center; margin-top: 50px;">
+    <form action="{{ path('search') }}" method="get">
+        <input type="text" name="q" placeholder="Search..." value="{{ app.request.query.get('q') }}" style="width: 400px; padding: 10px; font-size: 16px;">
+        <button type="submit" style="padding: 10px 20px; font-size: 16px;">Search</button>
+    </form>
+</div>
+
+{# Display search results if there are any #}
+{% if results is not empty %}
+    <div style="margin-top: 20px;">
+        <h2>Search Results:</h2>
+        <ul>
+            {% for client in results %}
+                <li>{{ client.url }} - {{ client.code }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+    {# No results message #}
+    {% if app.request.query.get('q') %}
+        <p style="margin-top: 20px;">No results found for "{{ app.request.query.get('q') }}".</p>
+    {% endif %}
+{% endif %}
+
