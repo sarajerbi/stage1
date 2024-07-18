@@ -3,3 +3,9 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+# config/routes.yaml
+
+search_word_in_all_tables:
+    path: /post/{searchWord}
+    controller: App\Controller\PostController::searchWordInAllTables
+    methods: GET
